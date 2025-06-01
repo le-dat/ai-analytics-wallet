@@ -32,6 +32,14 @@ const Portfolio = () => {
   const account = useCurrentAccount();
   const { portfolio, gas, staking, isLoading, isError, error } = usePortfolioData();
 
+  // Get network name safely (only in browser)
+  const getNetworkName = () => {
+    if (typeof window !== "undefined" && window.localStorage) {
+      return localStorage.getItem("sui-network") || "mainnet";
+    }
+    return "mainnet";
+  };
+
   // Show loading state with Web3 style
   if (isLoading && account) {
     return (
@@ -97,7 +105,7 @@ const Portfolio = () => {
               </span>
               <Badge variant="outline" className="font-mono text-xs border-primary/50">
                 <Network className="h-3 w-3 mr-1" />
-                SUI {(localStorage.getItem("sui-network") || "mainnet").toUpperCase()}
+                SUI {getNetworkName().toUpperCase()}
               </Badge>
             </h1>
             {account && (
