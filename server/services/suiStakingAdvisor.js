@@ -1,11 +1,9 @@
-const { SuiClient, getFullnodeUrl } = require("@mysten/sui/client");
-
-const provider = new SuiClient({
-  url: process.env.SUI_RPC_URL || getFullnodeUrl("mainnet"),
-});
+const { getSuiClient } = require("./networkConfig");
 
 // Lấy số dư SUI chưa stake và đã stake (Sui native staking)
-async function getStakingSummary(address) {
+async function getStakingSummary(address, network = "mainnet") {
+  const provider = getSuiClient(network);
+
   // 1. Lấy tổng SUI balance
   const coins = await provider.getCoins({ owner: address });
   const suiBalance = coins.data

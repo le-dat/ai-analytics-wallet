@@ -1,11 +1,9 @@
-const { SuiClient, getFullnodeUrl } = require("@mysten/sui/client");
-
-const provider = new SuiClient({
-  url: process.env.SUI_RPC_URL || getFullnodeUrl("mainnet"),
-});
+const { getSuiClient } = require("./networkConfig");
 
 // Tổng hợp mua/bán/nhận SUI trong các giao dịch gần đây (phần cơ bản, cần nâng cấp nếu làm chuyên sâu)
-async function getTaxSummary(address, txLimit = 30) {
+async function getTaxSummary(address, network = "mainnet", txLimit = 30) {
+  const provider = getSuiClient(network);
+
   const txs = await provider.queryTransactionBlocks({
     filter: { FromAddress: address },
     limit: txLimit,

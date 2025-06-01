@@ -85,7 +85,7 @@ export default function LandingPage() {
                 >
                   <div className="flex items-center gap-2">
                     <Users className="h-5 w-5 text-muted-foreground" />
-                    <span className="text-sm text-muted-foreground">10K+ Users</span>
+                    <span className="text-sm text-muted-foreground">10+ Users</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="h-5 w-5 text-green-500" />

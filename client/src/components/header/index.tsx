@@ -1,5 +1,6 @@
 import { Bot } from "lucide-react";
 import ConnectWallet from "../wallet/connect-wallet";
+import NetworkSelector from "../wallet/network-selector";
 
 const Header = () => {
   return (
@@ -13,7 +14,10 @@ const Header = () => {
             <h1 className="text-xl font-semibold tracking-tight">Crypto Agent</h1>
           </div>
 
-          <ConnectWallet className="h-9" />
+          <div className="flex items-center gap-4">
+            <ConnectWallet className="h-9" />
+            <NetworkSelector />
+          </div>
         </div>
       </div>
     </header>

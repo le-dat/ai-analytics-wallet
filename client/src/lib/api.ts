@@ -48,8 +48,19 @@ export interface StakingData {
   recommendations: string[];
 }
 
+// Helper function to get current network
+function getCurrentNetwork(): string {
+  if (typeof window !== "undefined") {
+    return localStorage.getItem("sui-network") || "mainnet";
+  }
+  return "mainnet";
+}
+
 export async function getPortfolio(address: string): Promise<PortfolioData> {
-  const response = await fetch(`${API_BASE_URL}/api/sui-portfolio?address=${address}`);
+  const network = getCurrentNetwork();
+  const response = await fetch(
+    `${API_BASE_URL}/api/sui-portfolio?address=${address}&network=${network}`
+  );
   if (!response.ok) {
     throw new Error("Failed to fetch portfolio data");
   }
@@ -57,7 +68,8 @@ export async function getPortfolio(address: string): Promise<PortfolioData> {
 }
 
 export async function getGasData(address: string): Promise<GasData> {
-  const response = await fetch(`${API_BASE_URL}/api/sui-gas?address=${address}`);
+  const network = getCurrentNetwork();
+  const response = await fetch(`${API_BASE_URL}/api/sui-gas?address=${address}&network=${network}`);
   if (!response.ok) {
     throw new Error("Failed to fetch gas data");
   }
@@ -65,7 +77,10 @@ export async function getGasData(address: string): Promise<GasData> {
 }
 
 export async function getStakingData(address: string): Promise<StakingData> {
-  const response = await fetch(`${API_BASE_URL}/api/sui-staking?address=${address}`);
+  const network = getCurrentNetwork();
+  const response = await fetch(
+    `${API_BASE_URL}/api/sui-staking?address=${address}&network=${network}`
+  );
   if (!response.ok) {
     throw new Error("Failed to fetch staking data");
   }

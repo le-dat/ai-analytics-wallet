@@ -97,7 +97,7 @@ const Portfolio = () => {
               </span>
               <Badge variant="outline" className="font-mono text-xs border-primary/50">
                 <Network className="h-3 w-3 mr-1" />
-                SUI MAINNET
+                SUI {(localStorage.getItem("sui-network") || "mainnet").toUpperCase()}
               </Badge>
             </h1>
             {account && (

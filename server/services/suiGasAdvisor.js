@@ -1,10 +1,9 @@
-const { SuiClient, getFullnodeUrl } = require("@mysten/sui/client");
+const { getSuiClient } = require("./networkConfig");
 
-const provider = new SuiClient({
-  url: process.env.SUI_RPC_URL || getFullnodeUrl("mainnet"),
-});
 // Tổng phí gas trong X giao dịch gần nhất (tuỳ chỉnh limit)
-async function getGasSummary(address, txLimit = 30) {
+async function getGasSummary(address, network = "mainnet", txLimit = 30) {
+  const provider = getSuiClient(network);
+
   const txs = await provider.queryTransactionBlocks({
     filter: { FromAddress: address },
     limit: txLimit,

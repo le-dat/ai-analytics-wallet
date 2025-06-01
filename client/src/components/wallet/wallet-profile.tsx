@@ -9,6 +9,7 @@ import { Copy, LogOut, User } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { toast } from "sonner";
+import NetworkSelector from "./network-selector";
 
 interface WalletProfileProps {
   name?: string;
@@ -112,6 +113,10 @@ const WalletProfile = ({ name, email, className }: WalletProfileProps) => {
                 </Button>
               </div>
             </div>
+          </div>
+
+          <div className="flex items-center justify-center">
+            <NetworkSelector />
           </div>
 
           {/* Logout Button */}

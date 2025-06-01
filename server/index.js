@@ -23,18 +23,18 @@ app.use(
 );
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(morgan("combined"));
+app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
-  res.json({ message: "OK" });
+  res.json({ message: "SUI Portfolio API is running!" });
 });
 
 app.get("/api/sui-portfolio", async (req, res) => {
-  const { address } = req.query;
+  const { address, network = "mainnet" } = req.query;
   if (!address) return res.status(400).json({ error: "Missing address" });
 
   try {
-    const data = await getSuiPortfolio(address);
+    const data = await getSuiPortfolio(address, network);
     res.json(data);
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -42,11 +42,11 @@ app.get("/api/sui-portfolio", async (req, res) => {
 });
 
 app.get("/api/sui-gas", async (req, res) => {
-  const { address } = req.query;
+  const { address, network = "mainnet" } = req.query;
   if (!address) return res.status(400).json({ error: "Missing address" });
 
   try {
-    const data = await getGasSummary(address);
+    const data = await getGasSummary(address, network);
     res.json(data);
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -54,11 +54,11 @@ app.get("/api/sui-gas", async (req, res) => {
 });
 
 app.get("/api/sui-staking", async (req, res) => {
-  const { address } = req.query;
+  const { address, network = "mainnet" } = req.query;
   if (!address) return res.status(400).json({ error: "Missing address" });
 
   try {
-    const data = await getStakingSummary(address);
+    const data = await getStakingSummary(address, network);
     res.json(data);
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -66,11 +66,11 @@ app.get("/api/sui-staking", async (req, res) => {
 });
 
 app.get("/api/sui-tax", async (req, res) => {
-  const { address } = req.query;
+  const { address, network = "mainnet" } = req.query;
   if (!address) return res.status(400).json({ error: "Missing address" });
 
   try {
-    const data = await getTaxSummary(address);
+    const data = await getTaxSummary(address, network);
     res.json(data);
   } catch (e) {
     res.status(500).json({ error: e.message });

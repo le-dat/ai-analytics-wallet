@@ -1,11 +1,10 @@
 const { SuiClient, getFullnodeUrl } = require("@mysten/sui/client");
-
-const provider = new SuiClient({
-  url: process.env.SUI_RPC_URL || getFullnodeUrl("mainnet"),
-});
+const { getSuiClient } = require("./networkConfig");
 
 // Hàm lấy tất cả object ví đang sở hữu
-async function getSuiPortfolio(address) {
+async function getSuiPortfolio(address, network = "mainnet") {
+  const provider = getSuiClient(network);
+
   // 1. Lấy list object (coin, token, NFT)
   const objects = await provider.getOwnedObjects({
     owner: address,
