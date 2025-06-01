@@ -148,8 +148,8 @@ export default function LandingPage() {
                     className="absolute z-20 top-10 -right-10"
                   >
                     <Image
-                      src="/coin.png"
-                      alt="SUI Coin"
+                      src="/sui-logo.svg"
+                      alt="SUI Logo"
                       width={50}
                       height={50}
                       className="drop-shadow-xl"
@@ -353,7 +353,7 @@ export default function LandingPage() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="border-t bg-card/50 backdrop-blur"
+          className="border-t bg-card/50 backdrop-blur mx-auto"
         >
           <div className="container px-4 py-12">
             <div className="grid gap-8 md:grid-cols-4">

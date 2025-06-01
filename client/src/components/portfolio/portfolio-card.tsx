@@ -7,7 +7,7 @@ export interface PortfolioCardProps {
   title: string;
   value: string;
   icon: React.ReactNode;
-  description?: string;
+  description?: React.ReactNode;
   trend?: "up" | "down";
   trendValue?: string;
   className?: string;
@@ -47,7 +47,7 @@ export function PortfolioCard({
             </div>
           )}
         </div>
-        {description && <p className="text-xs text-muted-foreground mt-1">{description}</p>}
+        {description && <span className="text-xs text-muted-foreground mt-1">{description}</span>}
       </CardContent>
     </Card>
   );
