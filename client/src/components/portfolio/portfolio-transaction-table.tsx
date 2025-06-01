@@ -206,7 +206,7 @@ export function PortfolioTransactionTable({
                       </td>
                       <td className="px-4 py-3">
                         <Link
-                          href={`https://suiscan.xyz/mainnet/tx/${tx.digest}`}
+                          href={`https://suiscan.xyz/testnet/tx/${tx.digest}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1 text-primary/70 hover:text-primary transition-colors font-mono text-xs"
